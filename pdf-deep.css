@@ -1,0 +1,13 @@
+.pdf-deep{min-width:0}
+.pdf-deep-card{padding:18px 0;border-top:1px solid var(--line)}
+.pdf-deep-card:first-of-type{border-top:0;padding-top:4px}
+.pdf-deep-card h3{font-size:21px;line-height:1.5;margin:0 0 14px;color:#21523b}
+.pdf-deep-card p,.pdf-deep-card li{font-size:15px;line-height:1.9;color:#33473a}
+.pdf-deep-code{margin:16px 0;background:#eef5ed;border-radius:8px;padding:14px}
+.pdf-deep-code>b{display:block;margin-bottom:8px;color:#2a5d42}
+.pdf-deep-code pre{white-space:pre-wrap;overflow:auto;background:#1c2926;color:#e7f6e8;padding:15px;line-height:1.65}
+.pdf-deep-code details{padding:10px 0}
+.pdf-deep-code summary{cursor:pointer;color:#245b42;font-weight:700}
+.pdf-deep-code ol{padding-left:24px;margin-bottom:0}
+.pdf-deep-try{border-left:3px solid var(--green);padding-left:12px}
+.pdf-deep-run{margin-top:4px;background:#e2f0e5;border-color:#a6cdb0;color:#245b42;font-weight:700}

@@ -1,0 +1,17 @@
+.pdf-guidance{font-size:16px}
+.pdf-textbook{margin-top:24px;max-width:74ch}
+.pdf-textbook h3{font-size:20px;margin:28px 0 14px;color:#244e39}
+.pdf-textbook>p{font-size:16px;line-height:2.05;color:#273b2f;margin:0 0 18px}
+.pdf-paragraph-index{display:inline-grid;place-items:center;width:24px;height:24px;margin-right:9px;border-radius:50%;background:#e8f2e8;color:#276246;font:700 12px/1 sans-serif;vertical-align:2px}
+.pdf-learning-goal{background:#f3f7eb;border:1px solid #d6e3c9;border-radius:9px;padding:16px 19px}
+.pdf-learning-goal b{color:#315c3d}
+.pdf-learning-goal p{margin:8px 0 0;line-height:1.8}
+.pdf-misconception{background:#fff6e8;border-left:4px solid #c58537;padding:15px 19px;margin:22px 0}
+.pdf-misconception b{color:#8b5425}
+.pdf-misconception p{margin:7px 0 0;line-height:1.9;color:#513b2a}
+.pdf-source-details>summary{display:flex;justify-content:space-between;gap:10px;align-items:center;cursor:pointer;font-size:17px;font-weight:700;color:#275743}
+.pdf-source-details>summary small{font-size:12px;font-weight:400;color:#657468}
+.pdf-source-details[open]>summary{border-bottom:1px solid var(--line);padding-bottom:17px;margin-bottom:18px}
+.pdf-next-topic{padding:0 3px 7px;text-align:right}
+.pdf-next-topic button{font-weight:700;color:#245b42;background:#e5f1e8;border-color:#b5d1bb;padding:13px 17px;text-align:left;line-height:1.5}
+@media(max-width:600px){.pdf-textbook>p{font-size:15px;line-height:1.95}.pdf-source-details>summary{display:block}.pdf-source-details>summary small{display:block;margin-top:6px}}
