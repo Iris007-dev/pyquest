@@ -1,0 +1,11 @@
+{
+  "name": "PyQuest · 零基础学 Python",
+  "short_name": "PyQuest",
+  "description": "中文 Python 教程、练习与浏览器内代码实验室",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8f5ed",
+  "theme_color": "#174c39",
+  "icons": [{"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]
+}

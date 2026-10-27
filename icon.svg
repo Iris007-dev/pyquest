@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="PyQuest 图标">
+  <rect width="512" height="512" rx="104" fill="#174c39"/>
+  <path d="M111 134h161c82 0 129 42 129 111 0 70-50 113-131 113h-39v47H111V134zm120 94v37h47c15 0 23-6 23-19 0-12-8-18-23-18h-47z" fill="#f8f5ed"/>
+  <circle cx="378" cy="382" r="34" fill="#f36c3f"/>
+</svg>

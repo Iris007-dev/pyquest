@@ -1,6 +1,6 @@
-import { loadPyodide } from 'https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.mjs';
+import { loadPyodide } from './pyodide/pyodide.mjs';
 
-const ready = loadPyodide();
+const ready = loadPyodide({indexURL: new URL('./pyodide/', import.meta.url).href});
 ready.then(() => self.postMessage({type: 'ready'}), error => self.postMessage({type: 'fatal', error: String(error)}));
 
 const runner = `

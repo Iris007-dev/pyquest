@@ -22,8 +22,8 @@ function ensurePublicWorker() {
     const worker = new Worker('py-worker.mjs', {type: 'module'});
     publicWorker = worker;
     publicReadyTimer = setTimeout(() => {
-      resetPublicWorker('浏览器内 Python 加载超时，请检查网络后重试。');
-      reject(Error('浏览器内 Python 加载超时，请检查网络后重试。'));
+      resetPublicWorker('浏览器内 Python 加载超时，请刷新页面后重试。');
+      reject(Error('浏览器内 Python 加载超时，请刷新页面后重试。'));
     }, 90000);
     worker.onerror = event => {
       const message = event.message || '浏览器无法加载 Python 运行组件。';
