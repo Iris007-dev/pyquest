@@ -3,9 +3,10 @@ import {readFileSync, mkdtempSync, rmSync} from 'node:fs';
 import {join, resolve, sep} from 'node:path';
 import {tmpdir} from 'node:os';
 import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
 
-const dist = resolve('dist');
+const dist = fileURLToPath(new URL('./dist/', import.meta.url));
 globalThis.window = {};
 for (const name of [
   'pdf-course.js', 'beginner-0-2.js', 'beginner-3-4.js',
