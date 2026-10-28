@@ -51,6 +51,26 @@ function pdfFocusedExample(chapterIndex, topicIndex) {
     <button class="pdf-deep-run" data-topic-example="${key}">把这段代码送去实验室 →</button></article></section>`;
 }
 
+function renderBeginnerLesson(chapterIndex, topicIndex) {
+  const key = `${chapterIndex}:${topicIndex}`;
+  const lesson = window.PYQUEST_BEGINNER?.[key];
+  if (!lesson) return '';
+  return `<div class="beginner-course">
+    <p class="eyebrow">从第一步讲清楚 · 本知识点精讲</p>
+    <h3>先用一句话理解</h3><p class="beginner-plain">${esc(lesson.plain)}</p>
+    <div class="beginner-analogy"><b>想象生活中的这个场景</b><p>${esc(lesson.analogy)}</p></div>
+    <h3>拆成小步骤</h3><ol class="beginner-steps">${lesson.steps.map(step => `<li><b>${esc(step.title)}</b><p>${esc(step.text)}</p></li>`).join('')}</ol>
+    <div class="beginner-example"><h3>跟着代码走一遍</h3><p>先自己猜输出，再展开看每一步。</p>
+      <pre><code>${esc(lesson.code)}</code></pre>
+      <details><summary>查看真实结果和逐步解释</summary><pre>${esc(lesson.output)}</pre><ol>${lesson.trace.map(step => `<li>${esc(step)}</li>`).join('')}</ol></details>
+      ${lesson.browser === false ? '<p class="beginner-local-note">这个示例需要在电脑安装对应工具后运行；网页实验室暂不支持。</p>' : `<button class="beginner-run" data-beginner-run="${key}">把这段代码放进实验室 →</button>`}
+    </div>
+    <div class="beginner-trap"><b>最容易想错的地方</b><p>${esc(lesson.trap)}</p></div>
+    <div class="beginner-try"><b>现在轮到你试</b><p>${esc(lesson.tryThis)}</p></div>
+    <details class="beginner-check"><summary>想一想：${esc(lesson.check.q)}</summary><p>${esc(lesson.check.answer)}</p></details>
+  </div>`;
+}
+
 function renderPdfCourse(chapterIndex = currentPdfChapter, topicIndex = 0) {
   const chapters = pdfCourse.chapters;
   const chapter = chapters[chapterIndex] || chapters[0];
@@ -67,15 +87,16 @@ function renderPdfCourse(chapterIndex = currentPdfChapter, topicIndex = 0) {
   const corrections = pdfCourse.corrections.filter(item => item.page >= topic.start && item.page <= topic.end);
   const deepGuide = pdfDeepGuide(chapterIndex, topicIndex);
   const focusedExample = pdfFocusedExample(chapterIndex, topicIndex);
+  const beginnerLesson = renderBeginnerLesson(chapterIndex, topicIndex);
   const prose = textbook ? `<div class="pdf-textbook"><div class="pdf-learning-goal"><b>读完你能做到</b><p>${esc(textbook.goal)}</p></div>
-    <h3>从零讲起</h3>${textbook.paragraphs.map((paragraph, index) => `<p><span class="pdf-paragraph-index">${index + 1}</span>${esc(paragraph)}</p>`).join('')}
+    <h3>再回顾一遍</h3>${textbook.paragraphs.map((paragraph, index) => `<p><span class="pdf-paragraph-index">${index + 1}</span>${esc(paragraph)}</p>`).join('')}
     <div class="pdf-misconception"><b>容易弄错的地方</b><p>${esc(textbook.pitfall)}</p></div></div>` : '';
   const challengeId = ({4:'customer_totals',5:'parse_quantity',9:'lower_bound'})[chapterIndex];
 
   $('#lesson').innerHTML = `<article class="pdf-course">
     <div class="pdf-titlebar"><p class="eyebrow">PyQuest 中文文字教程 · ${chapterIndex === 0 ? '入门准备' : `第 ${chapterIndex} 章`}</p><h1>${esc(chapter.title)}</h1><p>${esc(chapter.intro)}</p></div>
     <div class="pdf-layout"><aside class="pdf-sidebar"><b>教程章节</b><div class="pdf-chapters">${chapterList}</div><b class="pdf-sidebar-heading">本章知识点</b><div class="pdf-topics">${topicList}</div></aside>
-      <div class="pdf-content"><section class="pdf-guidance"><p class="eyebrow">小白先看 · ${esc(topic.title)}</p><h2>${esc(topic.title)}</h2><p>${esc(topic.explain)}</p>${prose}
+      <div class="pdf-content"><section class="pdf-guidance"><p class="eyebrow">小白先看 · ${esc(topic.title)}</p><h2>${esc(topic.title)}</h2><p>${esc(topic.explain)}</p>${beginnerLesson}${prose}
         <div class="pdf-practice"><b>读完后动手</b><p>${esc(topic.practice)}</p></div>${corrections.map(item => `<div class="pdf-correction"><b>需要澄清</b><p>${esc(item.text)}</p><a href="${item.docs}" target="_blank" rel="noreferrer">对照 Python 官方文档 ↗</a></div>`).join('')}</section>
         ${deepGuide ? `<section class="pdf-deep"><p class="eyebrow">补充精讲</p>${deepGuide}</section>` : ''}${focusedExample}
         <section class="pdf-example"><p class="eyebrow">本章小实验</p><h2>先预测，再运行</h2><pre><code>${esc(chapter.sample.code)}</code></pre><details><summary>展开预期输出</summary><pre>${esc(chapter.sample.output)}</pre></details><button class="example-run" id="pdf-example-run">▶ 用真实 Python 运行</button></section>
@@ -107,6 +128,11 @@ function renderPdfCourse(chapterIndex = currentPdfChapter, topicIndex = 0) {
     const example = window.PYQUEST_TOPIC_EXAMPLES[button.dataset.topicExample];
     $('#code').value = example.code; $('#challenge').innerHTML = ''; loadedChallenge = null;
     $('#output').textContent = '示例已载入。先预测输出，再点击“运行代码”。'; show('lab'); window.scrollTo(0, 0);
+  });
+  document.querySelectorAll('[data-beginner-run]').forEach(button => button.onclick = () => {
+    const example = window.PYQUEST_BEGINNER[button.dataset.beginnerRun];
+    $('#code').value = example.code; $('#challenge').innerHTML = ''; loadedChallenge = null;
+    $('#output').textContent = '精讲示例已载入。先预测输出，再点击“运行代码”。'; show('lab'); window.scrollTo(0, 0);
   });
   $('#pdf-example-run').onclick = () => {
     $('#code').value = chapter.sample.code; $('#challenge').innerHTML = ''; loadedChallenge = null;

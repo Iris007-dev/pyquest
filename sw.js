@@ -1,12 +1,13 @@
 /* PyQuest offline shell. Increment both cache names when packaged files change. */
-const SHELL_CACHE = 'pyquest-shell-v1';
+const SHELL_CACHE = 'pyquest-shell-v2';
 const RUNTIME_CACHE = 'pyquest-runtime-v1';
 const SHELL_FILES = [
   './', 'index.html', 'style.css', 'theory.css', 'pdf.css',
-  'pdf-deep.css', 'pdf-textbook.css', 'practice200.css', 'public.css',
+  'pdf-deep.css', 'pdf-textbook.css', 'beginner.css', 'practice200.css', 'public.css',
   'deep-foundation.js', 'deep-advanced.js', 'pdf-course.js',
   'pdf-textbook-foundation.js', 'pdf-textbook-advanced.js',
-  'pdf-topic-examples.js', 'practice200-data.js', 'practice200.js',
+  'pdf-topic-examples.js', 'beginner-0-2.js', 'beginner-3-4.js',
+  'beginner-5-7.js', 'beginner-8-9.js', 'practice200-data.js', 'practice200.js',
   'py-runner.js', 'public-course.js', 'app.js', 'offline.js',
   'py-worker.mjs', 'manifest.webmanifest', 'icon.svg'
 ];

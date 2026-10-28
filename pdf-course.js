@@ -74,7 +74,7 @@ window.PYQUEST_PDF_COURSE = {
       title: '五、文件操作与异常处理', start: 148, end: 163,
       intro: '程序要长期保存数据，就要读写文件；外部文件和用户输入也可能出错。目标不是掩盖错误，而是明确处理能预料到的失败。',
       topics: [
-        pdfTopic('5.1–5.5 文件、open、读写与 with', 150, 158, '文件在磁盘上保存数据，程序变量通常只活在一次运行中。open 的 r 是读、w 会覆盖原文件、a 是追加；处理中文文本请明确 encoding="utf-8"。with 会在离开代码块时关闭文件，即使中间抛错也会清理。', '用 with 写一段文本到 note.txt，再用第二个 with 读出；实验室文件只在当次临时目录中存在。'),
+        pdfTopic('5.1–5.5 文件、open、读写与 with', 150, 158, '文件在磁盘上保存数据，程序变量通常只活在一次运行中。open 的 r 是读、w 会覆盖原文件、a 是追加；处理中文文本请明确 encoding="utf-8"。with 会在离开代码块时关闭文件，即使中间抛错也会清理。', '用 with 写一段文本到 note.txt，再用第二个 with 读出；网页实验室的虚拟文件不等于电脑磁盘文件。'),
         pdfTopic('5.6 try/except、raise 与 assert', 159, 163, 'try 包住可能失败的操作，except 只接住你知道怎样处理的异常。int("12件") 抛 ValueError 是数据格式问题；把所有错误一把抓会隐藏真正的程序 bug。raise 主动报告错误；assert 主要用于内部检查和测试，不应代替用户输入校验。', '把文本“12件”转整数，用 except ValueError 输出清楚的提示。')
       ],
       sample: {code: 'text = "12件"\ntry:\n    quantity = int(text)\nexcept ValueError:\n    print("数量必须是整数")', output: '数量必须是整数'}
